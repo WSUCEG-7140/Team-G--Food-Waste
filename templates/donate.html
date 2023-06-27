@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+
+<style>
+  body {
+  background-color: #eee;
+}
+
+*[role="form"] {
+  max-width: 530px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color:orange;
+  border-radius: 0.3em;
+}
+
+*[role="form"] h2 {
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+
+</style>
+
+<script>
+  function validate()
+  {
+    var fullname=f1.fullname.value;
+    var phone=f1.phone.value;
+    var regname= /^[a-z A-Z ]{6,30}$/;
+
+    var regphone=/^[0-9]{10}$/;
+
+    var regsal=/^[0-9]{4,}$/;
+
+    if (!regname.test(fullname)) {
+
+        alert("Plz enter the valid name min 6 and max 30 characters");
+        return false;
+    }
+    if(!regphone.test(phone)){
+
+    alert("plz enter the valid Phone");
+    return false;
+} 
+
+
+
+    return true;
+
+  }
+  </script>
+
+  <div class="site-section bg-image overlay" style="background-image: url('images/hero_1_no-text.jpg');" id="donate-section">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mb-4">Make A Donation Now! will help the poor hunger</h2>
+          <form name="f1" action="" method="POST" class="form-horizontal" role="form" onsubmit="return validate()">
+            {% csrf_token %}
+            
+            {% for field in upload_form %}
+            
+            <div class="form-group">
+                <label for="firstName" class="col-sm-5 control-label">{{field.label}}</label>
+                <div class="col-sm-12">
+                    {{ field }} 
+                </div>
+            </div>
+          
+            {% endfor %}
+            
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-offset-3">
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </div>
+            </div>
+        </form>    
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock content %}
