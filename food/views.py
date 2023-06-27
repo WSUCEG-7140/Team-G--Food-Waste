@@ -90,6 +90,31 @@ def agent(request):
             pass
 
     return render(request,'agent.html')
+#submission of a donor login form
+def donar(request):
+
+    if request.method == "POST":
+        
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+
+        try:
+            
+            print("Hello world",username,password)
+            #print("retive from database",Adminlogin.objects.get(username))
+            if(username=="admin" and password=="admin"):
+                
+                request.session["name"]=username
+
+                return redirect('AdminHome')
+        except:
+            print("Unexpected error:", sys.exc_info()[0])
+            print("Unexpected error:", sys.exc_info()[1])
+            print("Unexpected error:", sys.exc_info()[2])
+            pass
+
+
+    return render(request,'donor.html')
 
 def donatesuccess(request):
 
