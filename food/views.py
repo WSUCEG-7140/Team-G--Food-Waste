@@ -35,6 +35,25 @@ def donate(request):
         return render(request,'donate.html',{'upload_form':upload})
 
 
+#function for handling the submission of a donor registration 
+def donarregister(request):
+
+    upload=DonarRegister_ModelCreate()
+
+    if request.method=='POST':
+        
+        upload=DonarRegister_ModelCreate(request.POST,request.FILES)
+
+        if upload.is_valid():
+
+            upload.save()
+
+            return redirect('donatersuccess')
+        
+    else:
+        
+        return render(request,'donateregister.html',{'upload_form':upload})
+        
 def admin1(request):
 
     if request.method == "POST":
