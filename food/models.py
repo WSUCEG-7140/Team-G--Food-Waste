@@ -24,6 +24,23 @@ class Donar_Model(models.Model):
         return self.fullname
 
 
+class DonarRegister_Model(models.Model):
+
+    name=models.CharField(max_length=40)
+
+    password=models.CharField(max_length=40)
+
+    email=models.CharField(max_length=50)
+
+    phone=models.CharField(max_length=20)
+
+    address=models.TextField(default="Enter the address")
+
+    
+    def __str__(self):
+
+        return self.name
+
 class Agent_Model(models.Model):
 
     name=models.CharField(max_length=40)
@@ -40,6 +57,7 @@ class Agent_Model(models.Model):
     def __str__(self):
 
         return self.name
+
 
 class Assign_Model(models.Model):
 
