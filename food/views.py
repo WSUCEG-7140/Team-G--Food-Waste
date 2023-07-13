@@ -93,6 +93,22 @@ def agent(request):
 #submission of a donor login form
 def donar(request):
 
+    """
+    Register a donor with the provided information.
+
+    Parameters:
+    - request: The HTTP request object containing form data.
+
+    Returns:
+    - If the registration is successful, redirects to the 'donatersuccess' page.
+    - If the request method is GET or the form is invalid, renders the 'donateregister.html' template with the form.
+
+    Contracts:
+    - Precondition: The 'donateregister.html' template with the 'upload_form' context variable exists.
+    - Postcondition: If the form is valid, the donor's information is saved in the database.
+
+    """
+
     if request.method == "POST":
         
         username=request.POST.get('username')
