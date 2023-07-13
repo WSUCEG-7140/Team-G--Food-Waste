@@ -37,6 +37,21 @@ def donate(request):
 
 #function for handling the submission of a donor registration 
 def donarregister(request):
+    """
+    Registers a donor with the provided information.
+
+    Parameters:
+    - request: The HTTP request object containing form data.
+
+    Returns:
+    - If the registration is successful, redirects to 'donatersuccess' page.
+    - If the request method is GET or the form is invalid, renders the 'donateregister.html' template with the form.
+
+    Contracts:
+    - Precondition: 'donateregister.html' template with 'upload_form' context variable exists.
+    - Postcondition: The donor's information is saved in the database if the form is valid.
+
+    """
 
     upload=DonarRegister_ModelCreate()
 
