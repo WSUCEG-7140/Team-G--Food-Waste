@@ -25,21 +25,36 @@ class Donar_Model(models.Model):
 
 
 class DonarRegister_Model(models.Model):
+    """
+    Represents a donor registration.
 
-    name=models.CharField(max_length=40)
+    Fields:
+    - name: CharField with a maximum length of 40 characters, representing the user's name.
+    - password: CharField with a maximum length of 40 characters, representing the user's password.
+    - email: CharField with a maximum length of 50 characters, representing the user's email.
+    - phone: CharField with a maximum length of 20 characters, representing the user's phone number.
+    - address: TextField with a default value of "Enter the address", representing the user's address.
 
-    password=models.CharField(max_length=40)
+    Contracts:
+    - Precondition: The length of the name field is less than or equal to 40 characters.
+    - Precondition: The length of the password field is less than or equal to 40 characters.
+    - Precondition: The length of the email field is less than or equal to 50 characters.
+    - Precondition: The length of the phone field is less than or equal to 20 characters.
+    - Postcondition: The __str__() method returns the user's name as a string representation of the DonarRegister_Model object.
+    """
 
-    email=models.CharField(max_length=50)
+    name = models.CharField(max_length=40)
+    password = models.CharField(max_length=40)
+    email = models.CharField(max_length=50)
+    phone = models.CharField(max_length=20)
+    address = models.TextField(default="Enter the address")
 
-    phone=models.CharField(max_length=20)
-
-    address=models.TextField(default="Enter the address")
-
-    
     def __str__(self):
-
+        """
+        Returns a string representation of the DonarRegister_Model object.
+        """
         return self.name
+
 
 class Agent_Model(models.Model):
 
