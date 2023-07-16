@@ -27,6 +27,11 @@ urlpatterns = [
  
     url(r'^donate/$',food_views.donate,name='donate'),
 
+    url(r'^donar/$',food_views.donar,name='donar'),
+
+    url(r'^donarregister/$',food_views.donarregister,name='donarregister'),
+    
+
     url(r'^admin1/$',food_views.admin1,name='admin1'),
 
     url(r'^agent/$',food_views.agent,name='agent'),
@@ -41,8 +46,10 @@ urlpatterns = [
 
     url(r'^ViewADonars/$',food_views.ViewADonars,name='ViewADonars'),
 
-
+   
     url(r'^donatesuccess/$',food_views.donatesuccess,name='donatesuccess'),
+
+     url(r'^donatersuccess/$',food_views.donatersuccess,name='donatersuccess'),
 
     url(r'^ViewAgent/$',food_views.ViewAgent,name='ViewAgent'),
 
@@ -62,3 +69,5 @@ urlpatterns = [
 
     
 ]
+
+ 
