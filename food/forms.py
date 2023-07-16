@@ -32,23 +32,45 @@ class Donar_ModelCreate(forms.ModelForm):
 
 
 class DonarRegister_ModelCreate(forms.ModelForm):
+    """
+    A form for creating a donor registration.
 
-  name=forms.CharField(label='User Name',widget=forms.TextInput(attrs={'class':"form-control"}))
-    
-  password=forms.CharField(label='Password',widget=forms.TextInput(attrs={'class':"form-control"}))
-  
-  email=forms.CharField(label='Email',widget=forms.TextInput(attrs={'class':"form-control"}))
-  
-  phone=forms.CharField(label='Phone',widget=forms.TextInput(attrs={'class':"form-control"}))
-  
-  address = forms.CharField(label='Address',widget=forms.Textarea(attrs={'class': "form-control"}))
-   
+    Fields:
+    - name: CharField for the user's name.
+    - password: CharField for the user's password.
+    - email: CharField for the user's email.
+    - phone: CharField for the user's phone number.
+    - address: CharField for the user's address.
 
-  class Meta:
+    Contracts:
+    - Precondition: The 'class' attribute of the form input elements is set to "form-control".
+    - Postcondition: A new instance of DonarRegister_Model is created if the form is valid and saved to the database.
+    """
 
-        model=DonarRegister_Model
+    name = forms.CharField(
+        label='User Name',
+        widget=forms.TextInput(attrs={'class': "form-control"})
+    )
+    password = forms.CharField(
+        label='Password',
+        widget=forms.TextInput(attrs={'class': "form-control"})
+    )
+    email = forms.CharField(
+        label='Email',
+        widget=forms.TextInput(attrs={'class': "form-control"})
+    )
+    phone = forms.CharField(
+        label='Phone',
+        widget=forms.TextInput(attrs={'class': "form-control"})
+    )
+    address = forms.CharField(
+        label='Address',
+        widget=forms.Textarea(attrs={'class': "form-control"})
+    )
 
-        fields='__all__'
+    class Meta:
+        model = DonarRegister_Model
+        fields = '__all__'
 
 
 class Agent_ModelCreate(forms.ModelForm):
