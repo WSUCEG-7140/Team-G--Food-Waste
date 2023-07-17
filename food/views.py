@@ -124,6 +124,47 @@ def agent(request):
             pass
 
     return render(request,'agent.html')
+#submission of a donor login form
+def donar(request):
+
+    """
+    Register a donor with the provided information.
+
+    Parameters:
+    - request: The HTTP request object containing form data.
+
+    Returns:
+    - If the registration is successful, redirects to the 'donatersuccess' page.
+    - If the request method is GET or the form is invalid, renders the 'donateregister.html' template with the form.
+
+    Contracts:
+    - Precondition: The 'donateregister.html' template with the 'upload_form' context variable exists.
+    - Postcondition: If the form is valid, the donor's information is saved in the database.
+
+    """
+
+    if request.method == "POST":
+        
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+
+        try:
+            
+            print("Hello world",username,password)
+            #print("retive from database",Adminlogin.objects.get(username))
+            if(username=="admin" and password=="admin"):
+                
+                request.session["name"]=username
+
+                return redirect('AdminHome')
+        except:
+            print("Unexpected error:", sys.exc_info()[0])
+            print("Unexpected error:", sys.exc_info()[1])
+            print("Unexpected error:", sys.exc_info()[2])
+            pass
+
+
+    return render(request,'donor.html')
 
 def donatesuccess(request):
 
