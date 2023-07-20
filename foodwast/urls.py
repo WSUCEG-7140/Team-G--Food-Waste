@@ -60,8 +60,11 @@ urlpatterns = [
     
     url(r'^ViewSDonars/(?P<c_id>\w+)',food_views.ViewSDonars),
 
-
     url(r'^ViewDonars/$',food_views.ViewDonars,name='ViewDonars'),
+
+    url(r'^ViewProfile/$',food_views.ViewProfile,name='ViewProfile'),
+
+    url(r'^EditProfile/(?P<d_id>\w+)',food_views.EditProfile,name='EditProfile'),
     
     url(r'^AssignDonars/$',food_views.AssignDonars,name='AssignDonars'),
    
