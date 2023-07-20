@@ -276,7 +276,7 @@ def EditProfile(request, d_id):
         f_form.save()
 
         # Redirect to the 'ViewProfile' page after successful form submission.
-        return redirect('ViewAgent')
+        return redirect('ViewProfile')
         
     # Render the 'EditProfile.html' template with the form instance.
     return render(request, 'EditProfile.html', {'upload_form': f_form})
