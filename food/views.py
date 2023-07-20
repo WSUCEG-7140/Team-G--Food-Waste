@@ -185,22 +185,37 @@ def AgentHome(request):
 
 
 def AddAgent(request):
+    """
+    Adds a new agent to the system.
 
-    upload=Agent_ModelCreate()
+    Parameters:
+        request (HttpRequest): The HTTP request object.
 
-    if request.method=='POST':
-        
-        upload=Agent_ModelCreate(request.POST,request.FILES)
+    Returns:
+        HttpResponse: If the request method is 'POST' and the form data is valid,
+        redirects to 'AddAgent' page after saving the data. Otherwise, renders the
+        'AddAgent.html' template with the 'upload_form' context variable.
+
+    Contract:
+        Precondition:
+        - The Agent_ModelCreate class must have proper validation rules for the form data.
+
+        Postcondition:
+        - If the request method is 'POST' and the form data is valid, a new agent will be added to the system.
+        - If the request method is not 'POST', the 'AddAgent.html' template will be rendered with the form.
+
+    """
+    upload = Agent_ModelCreate()
+
+    if request.method == 'POST':
+        upload = Agent_ModelCreate(request.POST, request.FILES)
 
         if upload.is_valid():
-
             upload.save()
-
             return redirect('AddAgent')
-        
     else:
-        
-        return render(request,'AddAgent.html',{'upload_form':upload})
+        return render(request, 'AddAgent.html', {'upload_form': upload})
+
 
 
     
