@@ -52,21 +52,24 @@ def donarregister(request):
     - Postcondition: The donor's information is saved in the database if the form is valid.
 
     """
-
+    # Create an instance of the DonarRegister_ModelCreate form.
     upload=DonarRegister_ModelCreate()
-
+    # Check if the HTTP request method is POST, indicating a form submission.
     if request.method=='POST':
-        
-        upload=DonarRegister_ModelCreate(request.POST,request.FILES)
+       
+        # Create another instance of the DonarRegister_ModelCreate form with the data from the POST request.
 
-        if upload.is_valid():
+        upload=DonarRegister_ModelCreate(request.POST,request.FILES)
+        
+            # Check if the submitted form data is valid.
+            if upload.is_valid():
 
             upload.save()
 
             return redirect('donatersuccess')
         
     else:
-        
+        # If the request method is not POST, render the 'donateregister.html' template with the form.
         return render(request,'donateregister.html',{'upload_form':upload})
         
 def admin1(request):
