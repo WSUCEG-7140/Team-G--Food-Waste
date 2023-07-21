@@ -248,6 +248,53 @@ def update_agent(request,a_id):
     
     return render(request,'AddAgent.html',{'upload_form':f_form})
 
+def EditProfile(request, d_id):
+    """
+    Edit a donor's profile.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object containing form data.
+        d_id (int): The donor's ID obtained from URL parameters.
+
+    Returns:
+        HttpResponse: A rendered HTML page displaying the editable profile form.
+
+    Precondition:
+        - The 'd_id' parameter must be a valid integer representing a DonarRegister_Model object.
+
+    Postcondition:
+        - If the 'd_id' parameter corresponds to an existing DonarRegister_Model object,
+          the editable profile form will be rendered in the 'EditProfile.html' template.
+        - If the 'd_id' parameter does not correspond to any object, the user will be redirected to 'index'.
+
+    """
+    # Convert 'd_id' to an integer.
+    d_id = int(d_id)
+
+    # Print the value of 'd_id' for debugging purposes.
+    print("The did is ", d_id)
+
+    try:
+        # Attempt to retrieve the DonarRegister_Model object with the given 'd_id'.
+        a_sel = DonarRegister_Model.objects.get(id=d_id)
+
+    except DonarRegister_Model.DoesNotExist:
+        # If the DonarRegister_Model object does not exist, redirect to the 'index' page.
+        return redirect('index')
+
+    # Create a form instance with the data from the POST request, if available,
+    # using the retrieved DonarRegister_Model object as the instance for editing.
+    f_form = DonarRegister_ModelCreate(request.POST or None, instance=a_sel)
+
+    if f_form.is_valid():
+        # If the form data is valid, save the changes to the DonarRegister_Model object.
+        f_form.save()
+
+        # Redirect to the 'ViewProfile' page after successful form submission.
+        return redirect('ViewProfile')
+        
+    # Render the 'EditProfile.html' template with the form instance.
+    return render(request, 'EditProfile.html', {'upload_form': f_form})
 
 
 def delete_agent(request,a_id):
