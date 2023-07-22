@@ -408,6 +408,8 @@ def AssignDonars(request):
             if upload.is_valid():
                 upload.save()
                 return redirect('AssignDonars')
+            else:
+                return redirect('AssignDonars')
         else:
             return render(request, 'AssignDonars.html', {'upload_form': upload})
     except Exception as e:
@@ -415,6 +417,7 @@ def AssignDonars(request):
         print("Unexpected error:", sys.exc_info()[1])
         print("Unexpected error:", sys.exc_info()[2])
         pass
+
 
 
 
