@@ -322,19 +322,43 @@ def EditProfile(request, d_id):
     # Render the 'EditProfile.html' template with the form instance.
     return render(request, 'EditProfile.html', {'upload_form': f_form})
 
+def delete_agent(request, a_id):
+    """
+    Delete the Agent_Model instance with the provided a_id.
 
-def delete_agent(request,a_id):
+    Parameters:
+        request (HttpRequest): The request object.
+        a_id (int): The ID of the Agent_Model instance to delete.
 
-    a_id=int(a_id)
+    Returns:
+        HttpResponse: Redirect to the 'ViewAgent' page after attempting to delete the instance.
+
+    Program By Contract (Precondition):
+        - The Agent_Model class exists and is imported properly.
+
+    Program By Contract (Postcondition):
+        - If an Agent_Model instance with the given a_id exists, it will be deleted.
+        - After the deletion, the user will be redirected to the 'ViewAgent' page.
+        - If no instance is found with the given a_id, nothing happens (no exception raised, no error reported).
+
+    Note: The function is designed not to raise any errors if the instance does not exist to avoid potential issues during deletion.
+    """
+    # Convert the provided a_id to an integer.
+    a_id = int(a_id)
+
     try:
-
-        a_sel=Agent_Model.objects.get(id=a_id)
-
+        # Try to get the Agent_Model instance with the given a_id.
+        a_sel = Agent_Model.objects.get(id=a_id)
     except Agent_Model.DoesNotExist:
+        # If no instance is found, do nothing (no error raised, no deletion).
         pass
 
+    # Delete the Agent_Model instance (if it exists).
     a_sel.delete()
-    return redirect('ViewAgent')
+
+    # Redirect the user to the 'ViewSDonars' page.
+    return redirect('ViewSDonars')
+
 
 def ViewSDonars(request,c_id):
 
