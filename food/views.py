@@ -146,28 +146,34 @@ def donar(request):
 
     """
 
-    if request.method == "POST":
-        
+        # Check if the request method is a POST request.
+         if request.method == "POST":
+             
+        # Retrieve the 'username' and 'password' fields from the POST data.
         username=request.POST.get('username')
         password=request.POST.get('password')
 
         try:
-            
+           #print("retive from database",Adminlogin.objects.get(username))
             print("Hello world",username,password)
-            #print("retive from database",Adminlogin.objects.get(username))
+            
             if(username=="admin" and password=="admin"):
-                
-                request.session["name"]=username
+             # Check if the entered 'username' and 'password' are both "admin".
+            request.session["name"]=username
 
                 return redirect('AdminHome')
+        # If any unexpected error occurs, handle it here.
+
         except:
             print("Unexpected error:", sys.exc_info()[0])
             print("Unexpected error:", sys.exc_info()[1])
             print("Unexpected error:", sys.exc_info()[2])
+
+          # Since the error is caught and handled, use 'pass' to continue with the code execution.
             pass
 
-
-    return render(request,'donor.html')
+    # Render the 'donor.html' template to display the donor page.
+      return render(request,'donor.html')
 
 def donatesuccess(request):
 
