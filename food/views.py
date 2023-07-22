@@ -375,32 +375,47 @@ def ViewProfile(request):
 
 
 def AssignDonars(request):
+    """
+    Handles the assignment of donors to agents.
 
-    upload=Assign_ModelCreate()
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: If the request method is 'POST' and the form data is valid,
+        redirects to 'AssignDonars' page after saving the data. Otherwise, redirects
+        back to 'AssignDonars' page to display the form.
+
+    Contract:
+        Precondition:
+        - The Assign_ModelCreate class must have proper validation rules for the form data.
+
+        Postcondition:
+        - If the request method is 'POST' and the form data is valid, donor assignments will be saved to the database.
+        - If the request method is 'POST' and the form data is invalid, the user will be redirected back to the 'AssignDonars' page to display the form again.
+        - If the request method is not 'POST', the 'AssignDonars.html' template will be rendered with the form.
+
+        Exception Handling:
+        - If any unexpected error occurs during execution, it will be caught, and the error details will be printed.
+
+    """
+    upload = Assign_ModelCreate()
 
     try:
+        if request.method == 'POST':
+            upload = Assign_ModelCreate(request.POST, request.FILES)
 
-            if request.method=='POST':
-        
-                 upload=Assign_ModelCreate(request.POST,request.FILES)
+            if upload.is_valid():
+                upload.save()
+                return redirect('AssignDonars')
+        else:
+            return render(request, 'AssignDonars.html', {'upload_form': upload})
+    except Exception as e:
+        print("Unexpected error:", sys.exc_info()[0])
+        print("Unexpected error:", sys.exc_info()[1])
+        print("Unexpected error:", sys.exc_info()[2])
+        pass
 
-                 if upload.is_valid():
-
-                    upload.save()
-
-                    return redirect('AssignDonars')
-                 else:
-                    return redirect('AssignDonars')
-        
-            else:
-        
-                 return render(request,'AssignDonars.html',{'upload_form':upload})
-    except:
-
-            print("Unexpected error:", sys.exc_info()[0])
-            print("Unexpected error:", sys.exc_info()[1])
-            print("Unexpected error:", sys.exc_info()[2])
-            pass
 
 
 def ViewAssignAgents(request):
