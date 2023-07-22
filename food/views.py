@@ -231,28 +231,48 @@ def ViewAgent(request):
 
     return render(request,'ViewAgents.html',{'obj':obj})
 
+def update_agent(request, a_id):
+    """
+    Update the Agent_Model instance based on the provided a_id.
 
+    Parameters:
+        request (HttpRequest): The request object.
+        a_id (int): The ID of the Agent_Model instance to update.
 
-def update_agent(request,a_id):
-    a_id=int(a_id)
+    Returns:
+        HttpResponse: If the form is valid and the update is successful, redirect to the 'ViewAgent' page. Otherwise, render the 'AddAgent.html' template with the form to correct errors.
 
-    print("The aid is ",a_id)
+    Program By Contract (Precondition):
+        - The Agent_Model class exists and is imported properly.
+    
+    Program By Contract (Postcondition):
+        - If a valid Agent_Model instance with the given a_id is found, it will be updated with the submitted form data and saved.
+        - If no Agent_Model instance is found with the given a_id, the user will be redirected to the 'index' page.
+    """
+    # Convert the provided a_id to an integer.
+    a_id = int(a_id)
+
+    # Print the provided a_id for debugging purposes.
+    print("The aid is ", a_id)
 
     try:
-        a_sel=Agent_Model.objects.get(id=a_id)
-    
+        # Try to get the Agent_Model instance with the given a_id.
+        a_sel = Agent_Model.objects.get(id=a_id)
     except Agent_Model.DoesNotExist:
+        # If no instance is found, redirect the user to the 'index' page.
         return redirect('index')
 
-    f_form=Agent_ModelCreate(request.POST or None, instance=a_sel)
+    # Create a form to update the Agent_Model instance with the request data or use the existing instance data.
+    f_form = Agent_ModelCreate(request.POST or None, instance=a_sel)
 
     if f_form.is_valid():
-
+        # If the form is valid, save the updated instance and redirect the user to the 'ViewAgent' page.
         f_form.save()
-
         return redirect('ViewAgent')
-    
-    return render(request,'AddAgent.html',{'upload_form':f_form})
+
+    # If the form is not valid, render the 'AddAgent.html' template with the form to correct errors.
+    return render(request, 'AddAgent.html', {'upload_form': f_form})
+
 
 def EditProfile(request, d_id):
     """
