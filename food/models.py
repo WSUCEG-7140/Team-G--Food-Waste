@@ -83,5 +83,34 @@ class Assign_Model(models.Model):
     def __str__(self):
 
        return self.cid
+
+
+class Rating_Model(models.model):
+    """
+    This class represents the Rating Model for storing ratings in the database.
+
+    Contract:
+    - Invariants: Each instance of this model will have a 'name' and a 'rating' field.
+
+    Fields:
+    - name (CharField): The name associated with the rating (maximum length: 30 characters).
+    - rating (CharField): The rating value itself (maximum length: 30 characters).
+
+    Methods:
+    - __str__: Returns the name as a string representation of the model instance.
+    """
+
+    name = models.CharField(max_length=30)
+    rating = models.CharField(max_length=30)
+
+    def __str__(self):
+        """
+        Get a string representation of the model instance.
+
+        Returns:
+        - str: The 'name' field value as a string representation of the instance.
+        """
+        return self.name
+
     
 
