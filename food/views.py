@@ -454,6 +454,40 @@ def ViewAssignAgents(request):
     return render(request,'ViewAssignAgents.html',{'obj':obj})
 
 
+def Addrating(request):
+    """
+    This function handles the process of adding a rating.
+
+    Contract:
+    - Preconditions: The request must be a valid HTTP POST request.
+    - Postconditions: If the upload is valid, the rating is saved, and the user is redirected to 'ratingsuccess' page.
+    - Invariants: The upload form is always passed to the template for rendering.
+
+    Parameters:
+    - request: An HTTP request object.
+
+    Returns:
+    - If the request method is POST and the upload is valid, it redirects to 'ratingsuccess' page.
+    - If the request method is not POST, it renders the 'Addrating.html' template with the upload form.
+    """
+    # Create an instance of the Rating_ModelCreate form
+    upload = Rating_ModelCreate()
+
+    if request.method == 'POST':
+        # Create an instance of the Rating_ModelCreate form with the data from the request
+        upload = Rating_ModelCreate(request.POST, request.FILES)
+
+        if upload.is_valid():
+            # Save the valid upload (rating) to the database
+            upload.save()
+            # Redirect to 'ratingsuccess' page
+            return redirect('ratingsuccess')
+    else:
+        # If the request method is not POST, render the 'Addrating.html' template with the upload form
+        return render(request, 'Addrating.html', {'upload_form': upload})
+
+
+
 
 
 
