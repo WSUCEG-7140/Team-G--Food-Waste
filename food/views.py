@@ -356,8 +356,8 @@ def delete_agent(request, a_id):
     # Delete the Agent_Model instance (if it exists).
     a_sel.delete()
 
-    # Redirect the user to the 'ViewSDonars' page.
-    return redirect('ViewSDonars')
+    # Redirect the user to the 'ViewAgent' page.
+    return redirect('ViewAgent)
 
 
 def ViewSDonars(request,c_id):
