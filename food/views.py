@@ -179,6 +179,14 @@ def donatesuccess(request):
 
     return render(request,'donatesuccess.html')
 
+# View function for successful complaint submission
+def complaintsuccess(request):
+    return render(request, 'complaintsuccess.html')
+
+# View function for successful suggestion submission
+def suggestionsuccess(request):
+    return render(request, 'suggestionsuccess.html')
+
 def AdminHome(request):
     return render(request,'AdminHome.html')
 
