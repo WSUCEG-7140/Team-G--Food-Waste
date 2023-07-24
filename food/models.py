@@ -85,7 +85,7 @@ class Assign_Model(models.Model):
        return self.cid
 
 
-class Rating_Model(models.model):
+class Rating_Model(models.Model):
     """
     This class represents the Rating Model for storing ratings in the database.
 
