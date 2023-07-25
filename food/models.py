@@ -4,24 +4,20 @@ from django.db import models
 
 
 class Donar_Model(models.Model):
-
-    fullname=models.CharField(max_length=40)
-
-    email=models.CharField(max_length=40)
-
-    fooditems=models.CharField(max_length=100)
-
-    address=models.TextField(default="enter the address")
-
-    phone=models.CharField(max_length=20)
-
-    orphanage=models.CharField(max_length=30)
-
-    date=models.DateField()
-
+    fullname = models.CharField(max_length=40)  # Represents the full name of the donor (maximum length: 40 characters).
+    email = models.CharField(max_length=40)  # Represents the email of the donor (maximum length: 40 characters).
+    fooditems = models.CharField(max_length=100)  # Represents the donated food items (maximum length: 100 characters).
+    address = models.TextField(default="enter the address")  # Represents the address of the donor (default value: "enter the address").
+    phone = models.CharField(max_length=20)  # Represents the phone number of the donor (maximum length: 20 characters).
+    orphanage = models.CharField(max_length=30)  # Represents the orphanage to which the donation is made (maximum length: 30 characters).
+    date = models.DateField()  # Represents the date of the donation.
+    
     def __str__(self):
-
+        """
+        Returns a string representation of the Donar_Model object.
+        """
         return self.fullname
+
 
 
 class DonarRegister_Model(models.Model):
@@ -57,32 +53,30 @@ class DonarRegister_Model(models.Model):
 
 
 class Agent_Model(models.Model):
+    name = models.CharField(max_length=40)  # Represents the name of the agent (maximum length: 40 characters).
+    password = models.CharField(max_length=40)  # Represents the password of the agent (maximum length: 40 characters).
+    email = models.CharField(max_length=50)  # Represents the email of the agent (maximum length: 50 characters).
+    phone = models.CharField(max_length=20)  # Represents the phone number of the agent (maximum length: 20 characters).
+    address = models.TextField(default="Enter the address")  # Represents the address of the agent (default value: "Enter the address").
 
-    name=models.CharField(max_length=40)
-
-    password=models.CharField(max_length=40)
-
-    email=models.CharField(max_length=50)
-
-    phone=models.CharField(max_length=20)
-
-    address=models.TextField(default="Enter the address")
-
-    
     def __str__(self):
-
+        """
+        Returns a string representation of the Agent_Model object.
+        """
         return self.name
 
 
-class Assign_Model(models.Model):
 
-    cid=models.IntegerField(primary_key=True)
-    
-    aid=models.IntegerField()
+class Assign_Model(models.Model):
+    cid = models.IntegerField(primary_key=True)  # Represents the primary key field for the assignment model (integer type).
+    aid = models.IntegerField()  # Represents the agent ID for the assignment (integer type).
 
     def __str__(self):
+        """
+        Returns a string representation of the Assign_Model object.
+        """
+        return str(self.cid)
 
-       return self.cid
 
 
 class Rating_Model(models.Model):
