@@ -76,6 +76,8 @@ class Assign_Model(models.Model):
         Returns a string representation of the Assign_Model object.
         """
         return str(self.cid)
+             return self.cid
+
 
 
 
@@ -106,5 +108,31 @@ class Rating_Model(models.Model):
         """
         return self.name
 
-    
+# Defining the Complaint_Model class which represents a model for complaints
+class Complaint_Model(models.Model):
+
+    # Defining a field "name" to store the name of the complainant
+    name = models.CharField(max_length=30, default="")
+
+    # Defining a field "message" to store the complaint message
+    message = models.TextField(default="Enter the complaint Message")
+
+    # Defining the __str__ method to represent the model instance as a string (name in this case)
+    def __str__(self):
+        return self.name
+
+# Defining the Suggestion_Model class which represents a model for suggestions
+class Suggestion_Model(models.Model):
+
+    # Defining a field "name" to store the name of the person providing the suggestion
+    name = models.CharField(max_length=30)
+
+    # Defining a field "message" to store the suggestion message
+    message = models.TextField(default="Enter the suggestion Message")
+
+    # Defining the __str__ method to represent the model instance as a string (name in this case)
+    def __str__(self):
+        return self.name
+
+
 
