@@ -8,8 +8,6 @@ from .models import DonarRegister_Model, Complaint_Model, Suggestion_Model, Rati
 from django.urls import reverse
 
 
-from django.test import TestCase
-from myapp.models import Rating_Model
 
 class Rating_ModelTest(TestCase):
 
