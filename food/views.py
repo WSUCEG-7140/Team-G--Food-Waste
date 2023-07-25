@@ -17,22 +17,38 @@ def about(request):
     return render(request,'about.html')
 
 def donate(request):
+    """
+    Handles the process of adding a new donation.
 
-    upload=Donar_ModelCreate()
+    Parameters:
+        request (HttpRequest): The HTTP request object.
 
-    if request.method=='POST':
-        
-        upload=Donar_ModelCreate(request.POST,request.FILES)
+    Returns:
+        HttpResponse: If the request method is 'POST' and the form data is valid,
+        redirects to 'donatesuccess' page after saving the data. Otherwise, renders
+        the 'donate.html' template with the 'upload_form' context variable.
 
+    """
+
+    # Create an instance of the Donar_ModelCreate form
+    upload = Donar_ModelCreate()
+
+    # Check if the request method is 'POST'
+    if request.method == 'POST':
+        # Create a new instance of the Donar_ModelCreate form with the POST data and FILES data
+        upload = Donar_ModelCreate(request.POST, request.FILES)
+
+        # Check if the form data is valid
         if upload.is_valid():
-
+            # Save the valid form data (donation) to the database
             upload.save()
-
+            # Redirect to the 'donatesuccess' page after successful data saving
             return redirect('donatesuccess')
-        
     else:
-        
-        return render(request,'donate.html',{'upload_form':upload})
+        # If the request method is not 'POST', render the 'donate.html' template
+        # and pass the 'upload' form as context variable 'upload_form'
+        return render(request, 'donate.html', {'upload_form': upload})
+
 
 
 #function for handling the submission of a donor registration 
@@ -73,60 +89,92 @@ def donarregister(request):
         return render(request,'donateregister.html',{'upload_form':upload})
         
 def admin1(request):
+    """
+    Handles the login process for admin users.
 
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: If the request method is 'POST' and the login credentials are valid,
+        redirects to 'AdminHome' page. Otherwise, renders the 'admin.html' template.
+
+    """
+    # Check if the request method is 'POST'
     if request.method == "POST":
-        
-        username=request.POST.get('username')
-        password=request.POST.get('password')
+        # Retrieve the 'username' and 'password' from the POST data
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
         try:
+            # Print the 'username' and 'password' received from the request
+            print("Hello world", username, password)
             
-            print("Hello world",username,password)
-            #print("retive from database",Adminlogin.objects.get(username))
-            if(username=="admin" and password=="admin"):
+            # Uncomment the next line to retrieve data from the 'Adminlogin' model
+            # print("retive from database", Adminlogin.objects.get(username))
+            
+            # Check if the entered 'username' and 'password' are valid (e.g., admin/admin)
+            if username == "admin" and password == "admin":
                 
-                request.session["name"]=username
+                # Store 'username' in the request session
+                request.session["name"] = username
 
+                # Redirect to the 'AdminHome' page after successful login
                 return redirect('AdminHome')
+        
+        # If an exception occurs during the login process, handle it
         except:
+            # Print the unexpected error information
             print("Unexpected error:", sys.exc_info()[0])
             print("Unexpected error:", sys.exc_info()[1])
             print("Unexpected error:", sys.exc_info()[2])
             pass
 
-
-    return render(request,'admin.html')
+    # If the request method is not 'POST', render the 'admin.html' template for login
+    return render(request, 'admin.html')
 
 def contact(request):
 
     return render(request,'contact.html')
 
 def agent(request):
-
+    # Check if the request method is POST
     if request.method == "POST":
-        
-        name=request.POST.get('username')
-        password=request.POST.get('password')
+        # Retrieve the 'username' and 'password' from the POST data
+        name = request.POST.get('username')
+        password = request.POST.get('password')
 
         try:
-            print("Hello world",name,password)
-            #print("retive from database",Adminlogin.objects.get(username))
-            enter=Agent_Model.objects.get(name=name,password=password)
-
+            # Print the 'name' and 'password' received from the request
+            print("Hello world", name, password)
+            
+            # Uncomment the next line to retrieve data from the 'Adminlogin' model
+            # print("retive from database", Adminlogin.objects.get(username))
+            
+            # Query the 'Agent_Model' to find an entry with matching 'name' and 'password'
+            enter = Agent_Model.objects.get(name=name, password=password)
+            
+            # Print the 'id' of the matched entry
             print(enter.id)
-            request.session["id"]=enter.id 
-            request.session["name"]=enter.name
-           
+            
+            # Store 'id' and 'name' in the request session
+            request.session["id"] = enter.id
+            request.session["name"] = enter.name
 
-
+            # Redirect the user to the 'AgentHome' page
             return redirect('AgentHome')
+
+        # If an exception occurs while querying the 'Agent_Model', handle it
         except:
+            # Print the unexpected error information
             print("Unexpected error:", sys.exc_info()[0])
             print("Unexpected error:", sys.exc_info()[1])
             print("Unexpected error:", sys.exc_info()[2])
             pass
 
-    return render(request,'agent.html')
+    # If the request method is not POST, render the 'agent.html' template
+    return render(request, 'agent.html')
+
 #submission of a donor login form
 def donar(request):
 
@@ -219,18 +267,25 @@ def AddAgent(request):
         - If the request method is not 'POST', the 'AddAgent.html' template will be rendered with the form.
 
     """
+
+    # Create an instance of the Agent_ModelCreate form
     upload = Agent_ModelCreate()
 
+    # Check if the request method is 'POST'
     if request.method == 'POST':
+        # Create a new instance of the Agent_ModelCreate form with the POST data and FILES data
         upload = Agent_ModelCreate(request.POST, request.FILES)
 
+        # Check if the form data is valid
         if upload.is_valid():
+            # Save the form data to create a new agent in the system
             upload.save()
+            # Redirect to the 'AddAgent' page after successful data saving
             return redirect('AddAgent')
     else:
+        # If the request method is not 'POST', render the 'AddAgent.html' template
+        # and pass the 'upload' form as context variable 'upload_form'
         return render(request, 'AddAgent.html', {'upload_form': upload})
-
-
 
     
 def ViewAgent(request):
@@ -457,20 +512,31 @@ def AssignDonars(request):
         - If any unexpected error occurs during execution, it will be caught, and the error details will be printed.
 
     """
+
+    # Create an instance of the Assign_ModelCreate form
     upload = Assign_ModelCreate()
 
     try:
+        # Check if the request method is 'POST'
         if request.method == 'POST':
+            # Create a new instance of the Assign_ModelCreate form with the POST data and FILES data
             upload = Assign_ModelCreate(request.POST, request.FILES)
 
+            # Check if the form data is valid
             if upload.is_valid():
+                # Save the form data to create donor assignments in the database
                 upload.save()
+                # Redirect to the 'AssignDonars' page after successful data saving
                 return redirect('AssignDonars')
             else:
+                # If the form data is invalid, redirect back to 'AssignDonars' page to display the form again
                 return redirect('AssignDonars')
         else:
+            # If the request method is not 'POST', render the 'AssignDonars.html' template
+            # and pass the 'upload' form as context variable 'upload_form'
             return render(request, 'AssignDonars.html', {'upload_form': upload})
     except Exception as e:
+        # Print the unexpected error information
         print("Unexpected error:", sys.exc_info()[0])
         print("Unexpected error:", sys.exc_info()[1])
         print("Unexpected error:", sys.exc_info()[2])
@@ -479,11 +545,26 @@ def AssignDonars(request):
 
 
 
+
 def ViewAssignAgents(request):
+    """
+    This function retrieves all Assign_Model objects and renders them in the 'ViewAssignAgents.html' template.
 
-    obj=Assign_Model.objects.all()
+    Parameters:
+    - request: An HTTP request object.
 
-    return render(request,'ViewAssignAgents.html',{'obj':obj})
+    Returns:
+    - HttpResponse: The rendered 'ViewAssignAgents.html' template with the 'obj' context variable,
+      containing all the Assign_Model objects retrieved from the database.
+
+    """
+    # Retrieve all objects of the Assign_Model from the database
+    obj = Assign_Model.objects.all()
+
+    # Render the 'ViewAssignAgents.html' template with the 'obj' context variable
+    # 'obj' will contain all the Assign_Model objects retrieved from the database
+    return render(request, 'ViewAssignAgents.html', {'obj': obj})
+
 
 
 def Addrating(request):
@@ -502,20 +583,23 @@ def Addrating(request):
     - If the request method is POST and the upload is valid, it redirects to 'ratingsuccess' page.
     - If the request method is not POST, it renders the 'Addrating.html' template with the upload form.
     """
+
     # Create an instance of the Rating_ModelCreate form
     upload = Rating_ModelCreate()
 
+    # Check if the request method is 'POST'
     if request.method == 'POST':
         # Create an instance of the Rating_ModelCreate form with the data from the request
         upload = Rating_ModelCreate(request.POST, request.FILES)
 
+        # Check if the form data is valid
         if upload.is_valid():
             # Save the valid upload (rating) to the database
             upload.save()
-            # Redirect to 'ratingsuccess' page
+            # Redirect to 'ratingsuccess' page after successful data saving
             return redirect('ratingsuccess')
     else:
-        # If the request method is not POST, render the 'Addrating.html' template with the upload form
+        # If the request method is not 'POST', render the 'Addrating.html' template with the upload form
         return render(request, 'Addrating.html', {'upload_form': upload})
 
 
