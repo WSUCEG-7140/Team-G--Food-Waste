@@ -14,3 +14,23 @@ class DonorPageViewTest(TestCase):
 
         # Assertion: Ensuring the view for the specified URL exists and returns a 200 status code
         self.assertEqual(resp.status_code, 200)
+
+
+class Rating_ModelTest(TestCase):
+
+    def setUp(self):
+        # Preparing test data: Creating a Rating_Model object
+        Rating_Model.objects.create(name='vinay', rating='5')
+
+    def test_text_content(self):
+        # Retrieving the Rating_Model object created in setUp
+        ratingregister = Rating_Model.objects.get(id=1)
+
+        # Contract: Testing the name and rating attributes of the Rating_Model object
+        # Expected name and rating values are defined based on the setUp data
+        rate_name = f'{ratingregister.name}'
+        rate_rating = f'{ratingregister.rating}'
+
+        # Assertion: Ensuring the name and rating values match the expected values
+        self.assertEqual(rate_name, 'vinay')
+        self.assertEqual(rate_rating, '5')
