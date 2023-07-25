@@ -1,3 +1,7 @@
+from django.test import TestCase 
+
+from .models import DonarRegister_Model,Complaint_Model, Suggestion_Model, Rating_Model
+
 # Importing reverse function to generate URLs for testing
 from django.urls import reverse
 
