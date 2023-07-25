@@ -104,6 +104,32 @@ class Assign_ModelCreate(forms.ModelForm):
 
     fields='__all__'
 
+# Defining the Complaint_ModelCreate form for creating complaints
+class Complaint_ModelCreate(forms.ModelForm):
+    # Defining a field "name" to store the name of the complainant
+    name = forms.CharField(label='Name', widget=forms.TextInput(attrs={'class': "form-control"}))
+
+    # Defining a field "message" to store the complaint message
+    message = forms.CharField(label='Message', widget=forms.Textarea(attrs={'class': "form-control"}))
+
+    # Meta class to associate the form with the Complaint_Model model and specify the fields to be included
+    class Meta:
+        model = Complaint_Model
+        fields = '__all__'
+
+# Defining the Suggestion_ModelCreate form for creating suggestions
+class Suggestion_ModelCreate(forms.ModelForm):
+    # Defining a field "name" to store the name of the person providing the suggestion
+    name = forms.CharField(label='Name', widget=forms.TextInput(attrs={'class': "form-control"}))
+
+    # Defining a field "message" to store the suggestion message
+    message = forms.CharField(label='Message', widget=forms.Textarea(attrs={'class': "form-control"}))
+
+    # Meta class to associate the form with the Suggestion_Model model and specify the fields to be included
+    class Meta:
+        model = Suggestion_Model
+        fields = '__all__'
+
 
 
 

@@ -45,7 +45,10 @@ urlpatterns = [
     url(r'^AddAgent/$',food_views.AddAgent,name='AddAgent'),
 
     url(r'^ViewADonars/$',food_views.ViewADonars,name='ViewADonars'),
+    
+     url(r'^complaintsuccess/$',food_views.complaintsuccess,name='complaintsuccess'),
 
+    url(r'^suggestionsuccess/$',food_views.suggestionsuccess,name='suggestionsuccess'),
    
     url(r'^donatesuccess/$',food_views.donatesuccess,name='donatesuccess'),
 
