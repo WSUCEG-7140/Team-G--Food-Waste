@@ -1,6 +1,6 @@
 <h1> Team Members </h1>
 1. Bharat Meduri (GitHub Username: Temporary-summer)<br>
-2. Suyes Sapkota (GitHub Username: SuyesSapkota
+2. Suyes Sapkota (GitHub Username: SuyesSapkota)
 
 <br><h6>We have covered Programming By Contract and Literate Programming in below files:</h6>
 
