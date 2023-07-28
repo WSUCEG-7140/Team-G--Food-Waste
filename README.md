@@ -2,17 +2,6 @@
 1. Bharat Meduri (GitHub Username: Temporary-summer)<br>
 2. Suyes Sapkota (GitHub Username: SuyesSapkota)
 
-<br><h6>We have covered Programming By Contract and Literate Programming in below files:</h6>
-
-https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/forms.py<br>
-https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/models.py<br>
-https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/test.py<br>
-https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/views.py<br>
-https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/foodwast/settings.py<br>
-https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/foodwast/urls.py<br>
-https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/foodwast/wsgi.py<br>
-
-
 <h1>Food Waste Management</h1>
 
 Food wastage is a prevalent issue in our society, and it is important to effectively address it for the sake of our environment and economy. Managing food waste is crucial as it can contribute to enhancing our sustainability. To tackle this issue, we have recognized the potential of utilizing web technology. Our proposed solution involves creating a Django Python application that enables individuals to donate and share their excess food with those who are in need.
@@ -53,5 +42,14 @@ Start the Python server: python manage.py Run server
 3.	Framework: Django<br>
 4.	Front-end: HTML, CSS, SCSS, JavaScript<br>
 
+<br><h6>We have covered Programming By Contract and Literate Programming in below files:</h6>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/Doxyfile/Requirements.md (Linked Issues)<br>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/forms.py<br>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/models.py<br>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/test.py<br>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/food/views.py<br>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/foodwast/settings.py<br>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/foodwast/urls.py<br>
+https://github.com/WSUCEG-7140/Team-G--Food-Waste/blob/main/foodwast/wsgi.py<br>
 
 
